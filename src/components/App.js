@@ -1,11 +1,10 @@
 import React from 'react';
 import headerLogo from '../images/logo.svg';
-
-import './App.css';
+import avatarImage from '../images/avatar.jpg';
 
 function App() {
   return (
-  <div>
+  <div className="page">
     <header className="header">
       <a href="#" target="_blank">
         <img className="header__logo" src={headerLogo} alt="Логотип Mesto" />
@@ -15,7 +14,7 @@ function App() {
       <section className="profile">
         <div className="profile__container">
           <div className="profile__avatar-box">
-            <img className="profile__avatar" src="<%=require('./images/avatar.jpg')%>" alt="Аватар профиля" />
+            <img className="profile__avatar" src={avatarImage} alt="Аватар профиля" />
             <button className="profile__avatar-edit" type="button" aria-label="Редактировать"></button>
           </div>
           <div className="profile__info">
