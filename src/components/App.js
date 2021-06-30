@@ -1,40 +1,15 @@
 import React from 'react';
-import headerLogo from '../images/logo.svg';
-import avatarImage from '../images/avatar.jpg';
+import Header from './Header';
+import Main from './Main.js';
+import Footer from './Footer.js'
 
 function App() {
   return (
   <div className="page">
-    <header className="header">
-      <a href="#" target="_blank">
-        <img className="header__logo" src={headerLogo} alt="Логотип Mesto" />
-      </a>
-    </header>
-    <main className="content">
-      <section className="profile">
-        <div className="profile__container">
-          <div className="profile__avatar-box">
-            <img className="profile__avatar" src={avatarImage} alt="Аватар профиля" />
-            <button className="profile__avatar-edit" type="button" aria-label="Редактировать"></button>
-          </div>
-          <div className="profile__info">
-            <div className="profile__name-box">
-              <h1 className="profile__name">Жак-Ив Кусто</h1>
-              <button className="profile__edit-button" type="button" aria-label="Редактировать"></button>
-            </div>
-            <p className="profile__profession">Исследователь океана</p>
-          </div>
-        </div>
-        <button className="profile__add-button" type="button" aria-label="Добавить"></button>
-      </section>
-      <section className="photos">
-        <ul className="cards"></ul>
-      </section>
-    </main>
-    <footer className="footer">
-      <p className="footer__copyright">&copy; 2021 Mesto Russia</p>
-    </footer>
-
+    <Header />
+    <Main />
+    <Footer />
+    
     <article className="popup popup_type_edit-profile">
       <div className="popup__container">
         <h3 className="popup__title">Редактировать профиль</h3>
