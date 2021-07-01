@@ -10,9 +10,6 @@ import DeleteCardPopup from './popups/DeleteCardPopup.js';
 
 
 function App() {
-  document.documentElement.lang = 'ru';
-  document.title = 'Mesto';
-
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false);
@@ -42,7 +39,7 @@ function App() {
   }
 
   return (
-    <div className="page">
+    <>
       <Header />
       <Main onEditAvatar={handleEditAvatarClick} onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} onCardClick={handleCardClick}/>
       <Footer />
@@ -52,7 +49,7 @@ function App() {
       <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups}/>
       <ImagePopup card={selectedCard} onClose={closeAllPopups}/>
       <DeleteCardPopup />
-    </div>
+    </>
   );
 }
 

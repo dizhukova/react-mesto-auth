@@ -1,3 +1,26 @@
+# Проект Место
+
+Проект представляет собой одностраничный сайт, предназначенный для обмена и распространения фотографий.
+На странице можно редактировать шапку профиля (в том числе аватар), добавлять и удалять фотографии, ставить лайки.
+
+**GitHub Pages**
+
+* [Ссылка на проект](https://dizhukova.github.io/mesto/)
+
+**В работе были использованы:**
+* HTML5, CSS3
+* JavaScript ES6
+* Файловая структура по БЭМ Nested
+* Адаптивная верстка
+* Валидация форм
+* Сборка проекта с помощью Webpack
+* Api
+* React
+* Create React App
+
+Спасибо!
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
