@@ -1,5 +1,5 @@
-import React from 'react';
-import api from './utils/Api.js';
+import React, { useEffect } from 'react';
+import api from '../utils/Api.js';
 import Card from './Card.js';
 
 function Main(props) {
@@ -8,18 +8,19 @@ function Main(props) {
     const [userAvatar, setUserAvatar] = React.useState('');
     const [cards, setCards] = React.useState([]);
 
-    Promise.all([
-        api.getUserInfo(),
-        api.getInitialCards()
-    ])
-        .then(([userData, cards]) => {
-            setUserName(userData.name);
-            setUserDescription(userData.about);
-            setUserAvatar(userData.avatar);
-            setCards(cards);
-        })
-        .catch(err => console.log(err));
-
+    useEffect(() => {
+        Promise.all([
+            api.getUserInfo(),
+            api.getInitialCards()
+        ])
+            .then(([userData, cards]) => {
+                setUserName(userData.name);
+                setUserDescription(userData.about);
+                setUserAvatar(userData.avatar);
+                setCards(cards);
+            })
+            .catch(err => console.log(err));
+    }, []);
 
     return (
         <main className="content">
