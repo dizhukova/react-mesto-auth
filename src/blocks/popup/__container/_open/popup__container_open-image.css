@@ -1,4 +1,4 @@
-.popup__container_open_image {
+.popup__container_open-image {
     position: relative;
     margin: 41px auto 68px;
     padding: 0;
@@ -8,7 +8,7 @@
 }
 
 @media screen and (max-width: 576px) {
-    .popup__container {
+    .popup__container_open-image {
       margin-top: 136px;
     }
 }
