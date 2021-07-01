@@ -1,7 +1,7 @@
 import React from 'react';
 import PopupWithForm from './PopupWithForm.js';
 
-function PopupDeleteCard() {
+function DeleteCardPopup() {
     return (
         <PopupWithForm name="delete-card" title="Вы уверены?" buttonText="Да">
 
@@ -9,4 +9,4 @@ function PopupDeleteCard() {
     )
 }
 
-export default PopupDeleteCard;
+export default DeleteCardPopup;

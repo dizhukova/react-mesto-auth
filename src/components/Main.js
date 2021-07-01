@@ -18,7 +18,7 @@ function Main(props) {
                         <p className="profile__profession">Исследователь океана</p>
                     </div>
                 </div>
-                <button className="profile__add-button" type="button" aria-label="Добавить" onClick={props.onAddCard}></button>
+                <button className="profile__add-button" type="button" aria-label="Добавить" onClick={props.onAddPlace}></button>
             </section>
             <section className="photos">
                 <ul className="cards"></ul>

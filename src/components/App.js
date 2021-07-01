@@ -2,44 +2,50 @@ import React from 'react';
 import Header from './Header';
 import Main from './Main.js';
 import Footer from './Footer.js';
-import PopupEditAvatar from './popups/PopupEditAvatar.js';
-import PopupEditProfile from './popups/PopupEditProfile.js';
-import PopupAddCard from './popups/PopupAddCard.js';
+import EditAvatarPopup from './popups/EditAvatarPopup.js';
+import EditProfilePopup from './popups/EditProfilePopup.js';
+import AddPlacePopup from './popups/AddPlacePopup.js';
 import ImagePopup from './popups/ImagePopup.js';
-import PopupDeleteCard from './popups/PopupDeleteCard.js';
+import DeleteCardPopup from './popups/DeleteCardPopup.js';
 
 
 function App() {
   document.documentElement.lang = 'ru';
   document.title = 'Mesto';
 
-  const [isPopupEditAvatarOpen, setIsPopupEditAvatarOpen] = React.useState(false);
-  const [isPopupEditProfileOpen, setIsPopupEditProfileOpen] = React.useState(false);
-  const [isPopupAddCardOpen, setPopupAddCardOpen] = React.useState(false);
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
+  const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false);
 
   function handleEditAvatarClick() {
-    setIsPopupEditAvatarOpen(true);
+    setIsEditAvatarPopupOpen(true);
   }
 
   function handleEditProfileClick() {
-    setIsPopupEditProfileOpen(true);
+    setIsEditProfilePopupOpen(true);
   }
 
-  function handleAddCardClick() {
-    setPopupAddCardOpen(true);
+  function handleAddPlaceClick() {
+    setAddPlacePopupOpen(true);
+  }
+
+  function closeAllPopups() {
+    setIsEditAvatarPopupOpen(false);
+    setIsEditProfilePopupOpen(false);
+    setAddPlacePopupOpen(false);
   }
 
   return (
     <div className="page">
       <Header />
-      <Main onEditAvatar={handleEditAvatarClick} onEditProfile={handleEditProfileClick} onAddCard={handleAddCardClick}/>
+      <Main onEditAvatar={handleEditAvatarClick} onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick}/>
       <Footer />
 
-      <PopupEditAvatar isOpen={isPopupEditAvatarOpen}/>
-      <PopupEditProfile isOpen={isPopupEditProfileOpen}/>
-      <PopupAddCard isOpen={isPopupAddCardOpen}/>
+      <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups}/>
+      <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups}/>
+      <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups}/>
       <ImagePopup />
-      <PopupDeleteCard />
+      <DeleteCardPopup />
 
       <template className="card-template">
         <li className="card">
