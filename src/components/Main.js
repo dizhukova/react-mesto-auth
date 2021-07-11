@@ -1,9 +1,26 @@
 import React from 'react';
 import Card from './Card';
 import CurrentUserContext from '../contexts/CurrentUserContext';
+import api from '../utils/Api';
 
 function Main(props) {
     const currentUser = React.useContext(CurrentUserContext);
+
+    function handleCardLike(card) {
+        // Снова проверяем, есть ли уже лайк на этой карточке
+        const isLiked = card.likes.some(i => i._id === currentUser._id);
+
+        // Отправляем запрос в API и получаем обновлённые данные карточки
+        api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
+            props.setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
+        });
+    }
+
+    function handleCardDelete(card) {
+        api.deleteCard(card._id).then(props.setCards((state) =>
+            state.filter((c) => c._id !== card._id)
+        ));
+    }
 
     return (
         <main className="content">
@@ -26,7 +43,7 @@ function Main(props) {
             <section className="photos">
                 <ul className="cards">
                     {props.cards.map((card) => (
-                        <Card card={card} key={card._id} onCardClick={props.onCardClick}/>
+                        <Card card={card} key={card._id} onCardClick={props.onCardClick} onCardLike={handleCardLike} onCardDelete={handleCardDelete}/>
                     ))}
                 </ul>
             </section>
