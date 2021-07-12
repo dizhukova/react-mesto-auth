@@ -1,5 +1,5 @@
 import React from 'react';
-import LoaderDots from '../LoaderDots.js';
+import LoaderDots from './LoaderDots.js';
 
 function PopupWithForm(props) {
     return (

@@ -2,11 +2,11 @@ import React, { useEffect } from 'react';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
-import EditAvatarPopup from './popups/EditAvatarPopup';
-import EditProfilePopup from './popups/EditProfilePopup';
-import AddPlacePopup from './popups/AddPlacePopup';
-import ImagePopup from './popups/ImagePopup';
-import DeleteCardPopup from './popups/DeleteCardPopup';
+import EditAvatarPopup from './EditAvatarPopup';
+import EditProfilePopup from './EditProfilePopup';
+import AddPlacePopup from './AddPlacePopup';
+import ImagePopup from './ImagePopup';
+import DeleteCardPopup from './DeleteCardPopup';
 import api from '../utils/Api';
 import CurrentUserContext from '../contexts/CurrentUserContext';
 
