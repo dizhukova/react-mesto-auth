@@ -1,0 +1,10 @@
+.registration {
+    margin: 0 auto;
+    padding-top: 60px;
+}
+
+@media screen and (max-width: 576px) {
+    .registration {
+        padding-top: 40px;
+    }
+}
