@@ -2,11 +2,11 @@
 
 Проект представляет собой интерактивный сайт с авторизацией и регистрацией, предназначенный для обмена и распространения фотографий.
 На странице можно редактировать шапку профиля (в том числе аватар), добавлять и удалять фотографии, ставить лайки.
-В работе использованы [предыдущие наработки] (https://github.com/dizhukova/mesto-react) по проекту [Mesto] (https://github.com/dizhukova/mesto).
+В работе использованы [предыдущие наработки](https://github.com/dizhukova/mesto-react) по проекту [Mesto](https://github.com/dizhukova/mesto).
 
-GitHub Pages
+**GitHub Pages**
 
-* [Ссылка на проект](https://dizhukova.github.io/mesto/)
+* [Ссылка на проект](https://dizhukova.github.io/mesto-react-auth/)
 
 В работе были использованы:
 * HTML5, CSS3
