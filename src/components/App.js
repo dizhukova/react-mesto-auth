@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react';
+import { Route, Switch } from 'react-router-dom';
+import ProtectedRoute from './ProtectedRoute';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
@@ -8,6 +10,8 @@ import AddPlacePopup from './AddPlacePopup';
 import ImagePopup from './ImagePopup';
 import DeleteCardPopup from './DeleteCardPopup';
 import CurrentUserContext from '../contexts/CurrentUserContext';
+import Register from './Register';
+import Login from './Login';
 import api from '../utils/api.js';
 
 
@@ -18,6 +22,7 @@ function App() {
   const [selectedCard, setSelectedCard] = React.useState({ name: '', link: '' });
   const [currentUser, setCurrentUser] = React.useState({ name: '', about: '', avatar: '' });
   const [cards, setCards] = React.useState([]);
+  const [loggedIn, setLoggedIn] = React.useState(false);
 
   useEffect(() => {
     Promise.all([
@@ -99,11 +104,26 @@ function App() {
     });
   }
 
-
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <Header />
-      <Main cards={cards} onEditAvatar={handleEditAvatarClick} onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} onCardClick={handleCardClick} onCardLike={handleCardLike} onCardDelete={handleCardDelete} />
+      <Switch>
+        <ProtectedRoute exact path='/' loggedIn={loggedIn} component={Main}
+          cards={cards}
+          onEditAvatar={handleEditAvatarClick}
+          onEditProfile={handleEditProfileClick}
+          onAddPlace={handleAddPlaceClick}
+          onCardClick={handleCardClick}
+          onCardLike={handleCardLike}
+          onCardDelete={handleCardDelete}
+        />
+        <Route path="/sign-up">
+          <Register />
+        </Route>
+        <Route path="/sign-in">
+          <Login />
+        </Route>
+      </Switch>
       <Footer />
 
       <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
