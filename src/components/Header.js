@@ -8,7 +8,7 @@ function Header(props) {
             {props.loggedIn &&
                 <div className="header__auth-info">
                     <p className="header__email">{props.email}</p>
-                    <button className="header__log-out" type="submit" name="submit">Выйти</button>
+                    <button className="header__log-out" type="submit" name="submit" onClick={props.onSignOut}>Выйти</button>
                 </div>
             }
             <a href="#" target="_blank">
@@ -20,12 +20,6 @@ function Header(props) {
             <Route path="/sign-in">
                 <Link className="header__auth-button" to="sign-up">Регистрация</Link>
             </Route>
-            {/* <Route path="/">
-                <div className="header__auth-info">
-                    <p className="header__email">{props.email}</p>
-                    <button className="header__log-out" type="submit" name="submit">Выйти</button>
-                </div>
-            </Route> */}
         </header>
     )
 }

@@ -5,7 +5,7 @@ function RegistrationForm(props) {
     return (
         <section className="registration">
             <h2 className="registration__title">{props.title}</h2>
-            <form name={props.name} noValidate>
+            <form name={props.name} onSubmit={props.onSubmit} noValidate>
                 <fieldset className="registration__form">
                     {props.children}
                     <button className="registration__submit-button" type="submit" name='submit'>{props.buttonText}</button>
