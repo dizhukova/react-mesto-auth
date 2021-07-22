@@ -47,7 +47,9 @@ function App() {
     if (localStorage.getItem('jwt')) {
       auth.checkToken(localStorage.getItem('jwt'))
         .then((res) => {
+          setLoggedIn(true);
           setUserEmail(res.data.email);
+          history.push('/');
         })
         .catch((err) => console.log(err));
     }
