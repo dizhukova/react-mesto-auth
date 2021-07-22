@@ -8,7 +8,7 @@ function Header(props) {
             {props.loggedIn &&
                 <div className="header__auth-info">
                     <p className="header__email">{props.email}</p>
-                    <button className="header__log-out" type="submit" name="submit" onClick={props.onSignOut}>Выйти</button>
+                    <button className="header__log-out" type="submit" name="submit" onClick={props.onLogOut}>Выйти</button>
                 </div>
             }
             <a href="#" target="_blank">

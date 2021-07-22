@@ -1,12 +1,9 @@
 import React from 'react';
-import { useHistory } from "react-router-dom";
 import RegistrationForm from './RegistrationForm';
-import * as auth from '../utils/auth.js';
 
 function Register(props) {
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
-    const history = useHistory();
 
     function handleEmailChange(e) {
         setEmail(e.target.value);
@@ -19,17 +16,10 @@ function Register(props) {
     function handleSubmit(e) {
         e.preventDefault();
 
-        auth.register(email, password)
-            .then((res) => {
-                if (res) {
-                    props.onRegistrationSuccess();
-                    history.push('/sign-in');
-                }
-            })
-            .catch(err => {
-                props.onRegistrationError();
-                console.log(err);
-            });
+        props.onRegister({
+            email: email,
+            password: password
+        })  
     }
 
     return (

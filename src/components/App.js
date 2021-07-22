@@ -47,7 +47,7 @@ function App() {
     if (localStorage.getItem('jwt')) {
       auth.checkToken(localStorage.getItem('jwt'))
         .then((res) => {
-          handleLogin(res.data.email);
+          setUserEmail(res.data.email);
         })
         .catch((err) => console.log(err));
     }
@@ -112,7 +112,8 @@ function App() {
         avatar: data.avatar
       });
       closeAllPopups();
-    });
+    })
+      .catch(err => console.log(err));
   }
 
   function handleUpdateAvatar({ avatar }) {
@@ -123,58 +124,72 @@ function App() {
         avatar: avatar
       });
       closeAllPopups();
-    });
+    })
+      .catch(err => console.log(err));
   }
 
   function handleCardLike(card) {
     const isLiked = card.likes.some(i => i._id === currentUser._id);
 
-    api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
-      setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
-    });
+    api.changeLikeCardStatus(card._id, !isLiked)
+      .then((newCard) => {
+        setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
+      })
+      .catch(err => console.log(err));
   }
 
   function handleCardDelete(card) {
-    api.deleteCard(card._id).then(setCards((state) =>
-      state.filter((c) => c._id !== card._id)
-    ));
+    api.deleteCard(card._id).then(() => {
+      setCards((state) => state.filter((c) => c._id !== card._id));
+    })
+      .catch(err => console.log(err));
   }
 
   function handleAddPlaceSubmit({ name, link }) {
     api.addCard({ name, link }).then((newCard) => {
       setCards([newCard, ...cards]);
       closeAllPopups();
-    });
+    })
+      .catch(err => console.log(err));
   }
 
-  function handleLogin(email) {
-    setLoggedIn(true);
-    setUserEmail(email);
-    history.push('/');
+  function handleRegister({ email, password }) {
+    auth.register(email, password)
+      .then(() => {
+        setIsInfoTooltipOpen(true);
+        setStatusIcon(successIcon);
+        setStatusMessage('Вы успешно зарегистрировались!');
+        history.push('/sign-in');
+      })
+      .catch(err => {
+        setIsInfoTooltipOpen(true);
+        setStatusIcon(errorIcon);
+        setStatusMessage('Что-то пошло не так! Попробуйте ещё раз.');
+        console.log(err);
+      });
   }
 
-  function handleSignOut() {
+  function handleLogin({ email, password }) {
+    auth.authorize(email, password)
+      .then((res) => {
+        setLoggedIn(true);
+        setUserEmail(email);
+        localStorage.setItem('jwt', res.token);
+        history.push('/');
+      })
+      .catch(err => console.log(err));
+  }
+
+  function handleLogOut() {
     history.push('/sign-in');
     setUserEmail('');
     setLoggedIn(false);
     localStorage.removeItem('jwt');
   }
 
-  function handleRegistrationSuccess() {
-    setIsInfoTooltipOpen(true);
-    setStatusIcon(successIcon);
-    setStatusMessage('Вы успешно зарегистрировались!');
-  }
-
-  function handleRegistrationError() {
-    setIsInfoTooltipOpen(true);
-    setStatusIcon(errorIcon);
-    setStatusMessage('Что-то пошло не так! Попробуйте ещё раз.');
-  }
-
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      <Header loggedIn={loggedIn} onSignOut={handleSignOut} email={userEmail} />
+      <Header loggedIn={loggedIn} onLogOut={handleLogOut} email={userEmail} />
       <Switch>
         <ProtectedRoute exact path='/' loggedIn={loggedIn} component={Main}
           cards={cards}
@@ -186,7 +201,7 @@ function App() {
           onCardDelete={handleCardDelete}
         />
         <Route path="/sign-up">
-          <Register onRegistrationSuccess={handleRegistrationSuccess} onRegistrationError={handleRegistrationError} />
+          <Register onRegister={handleRegister} />
         </Route>
         <Route path="/sign-in">
           <Login onLogin={handleLogin} />

@@ -1,6 +1,5 @@
 import React from 'react';
 import RegistrationForm from './RegistrationForm';
-import * as auth from '../utils/auth';
 
 function Login(props) {
     const [email, setEmail] = React.useState('');
@@ -17,16 +16,10 @@ function Login(props) {
     function handleSubmit(e) {
         e.preventDefault();
 
-        auth.authorize(email, password)
-            .then((res) => {
-                if (res.token) {
-                    localStorage.setItem('jwt', res.token);
-                    auth.checkToken(res.token).then((res) => {
-                        props.onLogin(res.data.email);
-                    });
-                }
-            })
-            .catch(err => console.log(err));
+        props.onLogin({
+            email: email,
+            password: password
+        })
     }
 
     return (
